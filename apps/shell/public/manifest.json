@@ -1,0 +1,25 @@
+{
+  "shell": {
+    "pages": {
+      "common": [
+        {
+          "name": "home",
+          "label": "Home",
+          "enabled": true
+        }
+      ],
+      "apps": [
+        {
+          "name": "weather",
+          "label": "Weather App",
+          "enabled": true
+        },
+        {
+          "name": "chat",
+          "label": "Chat App",
+          "enabled": true
+        }
+      ]
+    }
+  }
+}
