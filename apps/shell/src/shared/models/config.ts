@@ -13,6 +13,7 @@ export interface ShellPage {
   name: ShellPageName;
   label: string;
   enabled: boolean;
+  route: string;
 }
 
 export enum ShellPageName {

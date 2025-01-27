@@ -5,19 +5,22 @@
         {
           "name": "home",
           "label": "Home",
-          "enabled": true
+          "enabled": true,
+          "route": ""
         }
       ],
       "apps": [
         {
           "name": "weather",
           "label": "Weather App",
-          "enabled": true
+          "enabled": true,
+          "route": "weatherapp"
         },
         {
           "name": "chat",
           "label": "Chat App",
-          "enabled": true
+          "enabled": true,
+          "route": "chatapp"
         }
       ]
     }

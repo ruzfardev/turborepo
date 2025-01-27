@@ -1,0 +1,18 @@
+.shell-route-link {
+    outline: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.shell-nav-link {
+    height: 35px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    border-radius: 3px !important;
+}
+.shell-route-link.active .shell-nav-link {
+    background: var(--mantine-color-blue-light);
+    color: var(--mantine-color-blue-filled);
+}

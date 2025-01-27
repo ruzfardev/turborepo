@@ -1,11 +1,12 @@
 import { useUnit } from "effector-react";
-
 import {
   ActionIcon,
   AppShell,
   Group,
   ScrollArea,
   useMantineColorScheme,
+  NavLink,
+  Flex,
 } from "@mantine/core";
 import { $shellPages } from "@/shared/state/config";
 import {
@@ -16,8 +17,10 @@ import {
   MoonIcon,
   Sun,
 } from "lucide-react";
-import { Outlet } from "react-router-dom";
-
+import { Outlet, NavLink as RouteLink, useLocation } from "react-router-dom";
+import { navigated } from "@shared/state/router";
+import "./styles.css";
+import { useHover } from "@mantine/hooks";
 const getIcon = (icon: string) => {
   switch (icon) {
     case "home":
@@ -32,17 +35,29 @@ const getIcon = (icon: string) => {
 };
 
 export const Layout = () => {
+  const params = useLocation();
+  const { hovered, ref } = useHover();
   const shellPages = useUnit($shellPages);
   const { colorScheme, toggleColorScheme } = useMantineColorScheme({
     keepTransitions: true,
   });
+  const [navigate] = useUnit([navigated]);
+  const handleAppRouting = (route: string) => {
+    navigate(`/${route}`);
+  };
   return (
     <AppShell
       header={{ height: 50 }}
       withBorder
       navbar={{
-        width: 65,
+        width: 250,
         breakpoint: "sm",
+      }}
+      styles={{
+        navbar: {
+          transition: "width 300ms ease-in-out",
+          whiteSpace: "nowrap",
+        },
       }}
       padding="md"
     >
@@ -51,20 +66,34 @@ export const Layout = () => {
           <LucideIceCreamCone size={30} />
         </Group>
       </AppShell.Header>
-      <AppShell.Navbar p="sm">
+      <AppShell.Navbar ref={ref} p={"xs"}>
         <AppShell.Section component={ScrollArea} grow>
-          {shellPages.common.map((_, index) => (
-            <ActionIcon w={40} h={40} mb={10} key={index} variant="subtle">
-              {getIcon(_.name)}
-            </ActionIcon>
-          ))}
-          {shellPages.apps.map((_, index) => (
-            <ActionIcon w={40} h={40} mb={10} key={index} variant="subtle">
-              {getIcon(_.name)}
-            </ActionIcon>
-          ))}
+          <Flex gap={6} direction="column">
+            {shellPages.common.map((_, index) => (
+              <RouteLink className="shell-route-link" key={index} to={_.route}>
+                <NavLink
+                  className="shell-nav-link"
+                  component="div"
+                  leftSection={getIcon(_.name)}
+                  label={_.label}
+                  active={`/${_.route}` === params.pathname}
+                />
+              </RouteLink>
+            ))}
+            {shellPages.apps.map((_, index) => (
+              <RouteLink className="shell-route-link" key={index} to={_.route}>
+                <NavLink
+                  className="shell-nav-link"
+                  component="div"
+                  leftSection={getIcon(_.name)}
+                  label={_.label}
+                  active={`/${_.route}` === params.pathname}
+                />
+              </RouteLink>
+            ))}
+          </Flex>
         </AppShell.Section>
-        <AppShell.Section>
+        {/* <AppShell.Section>
           {colorScheme === "dark" ? (
             <ActionIcon
               onClick={toggleColorScheme}
@@ -84,7 +113,7 @@ export const Layout = () => {
               <MoonIcon />
             </ActionIcon>
           )}
-        </AppShell.Section>
+        </AppShell.Section> */}
       </AppShell.Navbar>
       <AppShell.Main>
         <Outlet />

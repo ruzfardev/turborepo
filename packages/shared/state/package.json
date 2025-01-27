@@ -1,0 +1,30 @@
+{
+  "name": "@shared/state",
+  "version": "0.0.0",
+  "private": true,
+  "imports": {
+    "#*": "./src/*"
+  },
+  "exports": {
+    "./router": "./src/router/index.ts"
+  },
+  "scripts": {
+    "dev": "echo 'Add dev script here'",
+    "build": "echo 'Add build script here'",
+    "test": "echo 'Add test script here'",
+    "lint": "eslint  --max-warnings 0"
+  },
+  "dependencies": {
+    "effector": "*",
+    "patronum": "*",
+    "react-router-dom": "*"
+  },
+  "devDependencies": {
+    "@shared/eslint-config": "*",
+    "@shared/typescript-config": "*",
+    "@types/eslint": "^8.56.1",
+    "@types/node": "^20.10.6",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}

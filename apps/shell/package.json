@@ -17,7 +17,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "*",
-    "lucide-react": "*"
+    "lucide-react": "*",
+    "@shared/state": "*"
   },
   "devDependencies": {
     "@effector/redux-devtools-adapter": "*",
